@@ -1,33 +1,60 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+/**
+ *  Build types and flavors is implemented in config-properties
+ */
+
+apply from: '../config-properties.gradle'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion Versions.targetSdk
+
     defaultConfig {
-        applicationId "core.android.com.android_core"
-        minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        applicationId AppDeps.appId
+
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode AppDeps.versionCode
+        versionName AppDeps.versionName
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation AppDeps.kotlin
+    implementation SupportDeps.compat
+    implementation SupportDeps.constraintLayout
+
+    testImplementation TestingDeps.jUnit
+    androidTestImplementation TestingDeps.testRunner
+    androidTestImplementation TestingDeps.testEspresso
+
+    implementation DaggerDeps.dagger
+    kapt DaggerDeps.compiler
+    implementation DaggerDeps.android
+    implementation DaggerDeps.support
+    kapt DaggerDeps.processor
+
+    implementation RetrofitDeps.retrofit
+    implementation RetrofitDeps.moshi
+    implementation RetrofitDeps.rx
+
+    implementation OkHttpDeps.okHttp
+    implementation OkHttpDeps.logging
+
+    implementation GsonConverterDeps.moshi
+    implementation GsonConverterDeps.kotshi
+    kapt GsonConverterDeps.compiler
+
+    implementation RxDeps.android
+    implementation RxDeps.java
+
+    implementation project(path: ':corelib')
+
 }

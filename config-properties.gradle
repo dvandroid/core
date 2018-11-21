@@ -1,0 +1,69 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Config                                                                                         //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class Config {
+    Properties commonProperties
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Pull in config properties                                                                      //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ext {
+    config = new Config()
+    def basePath = rootDir.absolutePath + "/config/"
+
+    config.commonProperties = new Properties()
+    def commonPropertiesFileName = "common.properties"
+    config.commonProperties.load(new FileInputStream(rootProject.file((basePath + commonPropertiesFileName))))
+}
+
+android {
+
+    flavorDimensions "default"
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // minifyEnabled true
+        }
+
+    }
+
+    productFlavors {
+
+        dev {
+            buildConfigField "String", "FIRST_END_POINT", "\"${config.commonProperties.dev_url}\""
+            buildConfigField "String", "SECOND_END_POINT", "\"${config.commonProperties.dev_url}\""
+            buildConfigField "String", "APP_HEADER", "\"${config.commonProperties.header}\""
+            buildConfigField "String", "APP_TOKEN", "\"${config.commonProperties.token}\""
+        }
+
+        prod {
+            buildConfigField "String", "FIRST_END_POINT", "\"${config.commonProperties.prod_url}\""
+            buildConfigField "String", "SECOND_END_POINT", "\"${config.commonProperties.dev_url}\""
+            buildConfigField "String", "APP_HEADER", "\"${config.commonProperties.header}\""
+            buildConfigField "String", "APP_TOKEN", "\"${config.commonProperties.token}\""
+        }
+
+        qa {
+            buildConfigField "String", "FIRST_END_POINT", "\"${config.commonProperties.qa_url}\""
+            buildConfigField "String", "SECOND_END_POINT", "\"${config.commonProperties.dev_url}\""
+            buildConfigField "String", "APP_HEADER", "\"${config.commonProperties.header}\""
+            buildConfigField "String", "APP_TOKEN", "\"${config.commonProperties.token}\""
+        }
+
+        canary {
+            buildConfigField "String", "FIRST_END_POINT", "\"${config.commonProperties.canary_url}\""
+            buildConfigField "String", "SECOND_END_POINT", "\"${config.commonProperties.dev_url}\""
+            buildConfigField "String", "APP_HEADER", "\"${config.commonProperties.header}\""
+            buildConfigField "String", "APP_TOKEN", "\"${config.commonProperties.token}\""
+        }
+    }
+}
