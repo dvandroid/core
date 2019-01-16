@@ -9,6 +9,7 @@ class Validation @Inject constructor() {
     /**
      * Function for email validation
      * @param email
+     * @return Result : true if valid, false if not and error message
      */
     fun validateEmail(email : String): Result{
 
@@ -27,6 +28,7 @@ class Validation @Inject constructor() {
     /**
      * Function for mobile validation with prefix (+63)
      * @param mobile (e.g. 9123456789)
+     * @return Result : true if valid, false if not and error message
      */
     fun validateMobileWithPrefix(mobile: String): Result{
 
@@ -41,6 +43,7 @@ class Validation @Inject constructor() {
     /**
      * Function for mobile validation
      * @param mobile (e.g. 09123456789)
+     * @return Result : true if valid, false if not and error message
      */
     fun validateMobile(mobile: String): Result{
 
