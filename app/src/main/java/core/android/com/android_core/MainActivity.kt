@@ -2,34 +2,23 @@ package core.android.com.android_core
 
 import android.Manifest
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import core.android.com.corelib.permission.Permission
-import core.android.com.corelib.permission.PermissionCallback
+import core.android.com.corelib.helper.Validation
+import dagger.Component
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject lateinit var validation: Validation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Permission.checkPermission(this, Manifest.permission.READ_CONTACTS) {
-            when (it) {
-                PermissionCallback.onNeedPermission -> {
-
-                }
-
-                PermissionCallback.onPermissionGranted -> {
-
-                }
-
-                PermissionCallback.onPermissionDisabled -> {
-
-                }
-
-                PermissionCallback.onPermissionPreviouslyDenied -> {
-
-                }
-            }
-        }
+        DaggerMainActivityComponent.create().inject(this)
     }
+}
+
+@Component
+interface MainActivityComponent{
+    fun inject(app : MainActivity)
 }
