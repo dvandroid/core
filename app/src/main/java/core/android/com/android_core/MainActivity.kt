@@ -1,6 +1,6 @@
 package core.android.com.android_core
 
-import android.support.v7.app.AppCompatActivity
+import android.Manifest
 import android.os.Bundle
 import core.android.com.corelib.helper.Validation
 import dagger.Component
