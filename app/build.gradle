@@ -9,6 +9,8 @@ apply plugin: 'kotlin-kapt'
 
 apply from: '../config-properties.gradle'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion Versions.targetSdk
 
