@@ -30,18 +30,6 @@ class NetworkModule {
 
     @Provides
     @PerApplication
-    fun provideApiKeyInterceptor(): Interceptor {
-        return Interceptor { chain ->
-            var request = chain.request()
-            val url = request.url()
-                    .newBuilder()
-                    .build()
-            request = request.newBuilder().url(url).build()
-            chain.proceed(request)
-        }
-    }
-    @Provides
-    @PerApplication
     fun provideMoshi(): Moshi = Moshi.Builder().add(ApplicationJsonAdapterFactory.INSTANCE).build()
 
     @Provides
