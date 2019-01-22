@@ -64,6 +64,11 @@ dependencies {
     testImplementation TestingDeps.jUnit
     androidTestImplementation TestingDeps.testRunner
     androidTestImplementation TestingDeps.testEspresso
+
+    implementation OtherDeps.sdp
+
+    implementation OtherDeps.jvm
+    kapt OtherDeps.kjvm
 }
 
 

@@ -54,4 +54,18 @@ class Validation @Inject constructor() {
 
         return Result()
     }
+
+    /**
+     * Function for validating 4-digit PIN
+     * @param   PIN
+     * @return  Result : true if valid, false if not and error message
+     */
+    fun validatePin(pin: String): Result{
+
+        if(pin?.length < 4)
+            return Result(false, "Please enter 4-digit PIN")
+
+        return Result()
+    }
+
 }

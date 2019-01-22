@@ -57,6 +57,6 @@ dependencies {
     implementation RxDeps.android
     implementation RxDeps.java
 
-    implementation project(path: ':corelib')
+    implementation OtherDeps.sdp
 
 }
