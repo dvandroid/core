@@ -35,7 +35,7 @@ object Versions {
     internal var dagger = "2.12"
     internal var rxAndroid = "2.0.1"
     internal var rxJava = "2.1.7"
-    internal var retrofit = "2.3.0"
+    internal var retrofit = "2.4.0"
     internal var okHttp = "3.9.0"
     internal var moshi = "1.5.0"
     internal var kotshi = "1.0.5"
@@ -86,6 +86,7 @@ object DaggerDeps {
 
 object RetrofitDeps {
     var retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    var gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     var moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     var rx = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
 }
