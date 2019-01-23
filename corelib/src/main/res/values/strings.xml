@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">corelib</string>
-
     <!-- Custom Dialog default labels-->
     <string name="header">Header</string>
     <string name="sample_message">Sample Message</string>
