@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import core.android.com.corelib.R
 import kotlinx.android.synthetic.main.custom_dialog.*
@@ -21,6 +22,7 @@ class CustomDialog @Inject constructor(context: Context) {
     var tvMessage:          TextView? = null
     var btnFirstButton:     Button? = null
     var btnSecondButton:    Button? = null
+    var llButtons:          LinearLayout? = null
 
     init {
 
@@ -31,16 +33,16 @@ class CustomDialog @Inject constructor(context: Context) {
         dialog?.setContentView(R.layout.custom_dialog)
         dialog?.setCancelable(false)
 
-        tvHeader        = dialog?.findViewById(R.id.tv_header)
-        tvMessage       = dialog?.findViewById(R.id.tv_message)
-        btnFirstButton  = dialog?.findViewById(R.id.btn_first)
-        btnSecondButton = dialog?.findViewById(R.id.btn_second)
-
-       // dialog?.tv_header
+        tvHeader        = dialog?.tv_header
+        tvMessage       = dialog?.tv_message
+        btnFirstButton  = dialog?.btn_first
+        btnSecondButton = dialog?.btn_second
+        llButtons       = dialog?.ll_buttons
     }
 
 
     fun showDialog(dialogBuilder: DialogBuilder){
+
 
         ///////////////////////////////////////////////
         // Header
@@ -51,10 +53,7 @@ class CustomDialog @Inject constructor(context: Context) {
             tvHeader?.text = this.title
             tvHeader?.textSize = this.size.toFloat()
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                tvHeader?.setTextColor(context!!.getColor(this.color))
-             else
-                tvHeader?.setTextColor(ContextCompat.getColor(context!!, this.color))
+            setColor(tvHeader!!.rootView, this.color)
 
         }
 
@@ -64,10 +63,7 @@ class CustomDialog @Inject constructor(context: Context) {
         tvMessage?.text = dialogBuilder.messageBuilder.message
         tvMessage?.textSize = dialogBuilder.messageBuilder.size.toFloat()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            tvMessage?.setTextColor(context!!.getColor(dialogBuilder.messageBuilder.color))
-        else
-            tvMessage?.setTextColor(ContextCompat.getColor(context!!, dialogBuilder.messageBuilder.color))
+        setColor(tvMessage!!.rootView, dialogBuilder.messageBuilder.color)
 
         ///////////////////////////////////////////////
         // First Button
@@ -76,14 +72,11 @@ class CustomDialog @Inject constructor(context: Context) {
         btnFirstButton?.background = dialogBuilder.firstButtonBuilder.background
         btnFirstButton?.textSize = dialogBuilder.firstButtonBuilder.textSize.toFloat()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            btnFirstButton?.setTextColor(context!!.getColor(dialogBuilder.firstButtonBuilder.textColor))
-        else
-            btnFirstButton?.setTextColor(ContextCompat.getColor(context!!, dialogBuilder.firstButtonBuilder.textColor))
-
         btnFirstButton?.setOnClickListener {
             dialogBuilder.firstButtonBuilder.action?.invoke()
         }
+
+        setColor(btnFirstButton!!.rootView, dialogBuilder.firstButtonBuilder.textColor)
 
         ///////////////////////////////////////////////
         // Second Button
@@ -98,16 +91,7 @@ class CustomDialog @Inject constructor(context: Context) {
                 this.action?.invoke()
             }
 
-
-        }
-
-        ///////////////////////////////////////////////
-        // orientation
-        ///////////////////////////////////////////////
-        if(dialogBuilder.isHorizontal){
-            dialogBuilder.secondButtonBuilder?.apply {
-                //change position of first & second button
-            }
+            setColor(btnSecondButton!!.rootView, this.textColor)
         }
 
         if(dialog?.isShowing!!)
