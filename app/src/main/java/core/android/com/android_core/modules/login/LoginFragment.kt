@@ -23,4 +23,12 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
+
+    private fun doLogin() {
+
+    }
+
+
 }
+
