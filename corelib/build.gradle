@@ -49,6 +49,8 @@ dependencies {
 
     implementation RetrofitDeps.retrofit
     implementation RetrofitDeps.moshi
+    implementation RetrofitDeps.gson
+
     implementation RetrofitDeps.rx
 
     implementation OkHttpDeps.okHttp

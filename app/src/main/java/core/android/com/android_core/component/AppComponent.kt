@@ -2,8 +2,9 @@ package core.android.com.android_core.component
 
 import core.android.com.android_core.App
 import core.android.com.android_core.api.ApiModule
+import core.android.com.android_core.network.TokenAuthenticator
 import core.android.com.corelib.inject.scopes.PerApplication
-import core.android.com.corelib.network.module.NetworkInterceptorModule
+import core.android.com.android_core.network.TokenInterceptor
 import core.android.com.corelib.network.module.NetworkModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -17,7 +18,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     NetworkModule::class,
-    NetworkInterceptorModule::class,
+    TokenInterceptor::class,
+    TokenAuthenticator::class,
     ApiModule::class
 ])
 

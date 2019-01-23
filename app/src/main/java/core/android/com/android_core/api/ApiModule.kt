@@ -14,6 +14,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
+import okhttp3.Authenticator
 
 @Module
 class ApiModule {
@@ -21,10 +22,11 @@ class ApiModule {
     @Provides
     @PerApplication
     fun provideFirstTestApi(builder: Retrofit.Builder,
-                          okHttpClientBuilder: OkHttpClient.Builder,
-                          httpLoggingInterceptor: HttpLoggingInterceptor,
-                          converterFactory: Converter.Factory,
-                          apiKeyInterceptor: Interceptor): FirstTestApi {
+                            okHttpClientBuilder: OkHttpClient.Builder,
+                            httpLoggingInterceptor: HttpLoggingInterceptor,
+                            converterFactory: Converter.Factory,
+                            authenticator: Authenticator,
+                            apiKeyInterceptor: Interceptor): FirstTestApi {
 
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -32,6 +34,7 @@ class ApiModule {
         }
 
         okHttpClientBuilder.addNetworkInterceptor(apiKeyInterceptor)
+                .authenticator(authenticator)
                 .retryOnConnectionFailure(true)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -51,10 +54,11 @@ class ApiModule {
     @Provides
     @PerApplication
     fun provideSecondTestApi(builder: Retrofit.Builder,
-                            okHttpClientBuilder: OkHttpClient.Builder,
-                            httpLoggingInterceptor: HttpLoggingInterceptor,
-                            converterFactory: Converter.Factory,
-                            apiKeyInterceptor: Interceptor): SecondTestApi {
+                             okHttpClientBuilder: OkHttpClient.Builder,
+                             httpLoggingInterceptor: HttpLoggingInterceptor,
+                             converterFactory: Converter.Factory,
+                             authenticator: Authenticator,
+                             apiKeyInterceptor: Interceptor): SecondTestApi {
 
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -62,6 +66,7 @@ class ApiModule {
         }
 
         okHttpClientBuilder.addNetworkInterceptor(apiKeyInterceptor)
+                .authenticator(authenticator)
                 .retryOnConnectionFailure(true)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
