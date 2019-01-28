@@ -29,6 +29,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(path: ':corelib')
+
     implementation AppDeps.kotlin
     implementation SupportDeps.compat
     implementation SupportDeps.constraintLayout

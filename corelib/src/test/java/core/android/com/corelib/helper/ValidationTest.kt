@@ -112,4 +112,31 @@ class ValidationTest {
         Assert.assertTrue(result.status)
 
     }
+
+    @Test
+    fun shouldShowErrorWithInvalidOtp(){
+
+        val result : Result = validation.validateOtp("")
+
+        Assert.assertNotNull(result)
+        Assert.assertFalse(result.message, result.status)
+    }
+
+    @Test
+    fun shouldShowErrorWithIncompleteOtp(){
+
+        val result : Result = validation.validateOtp("12345")
+
+        Assert.assertNotNull(result)
+        Assert.assertFalse(result.message, result.status)
+    }
+
+    @Test
+    fun shouldShowSuccessWithCorrectPin(){
+
+        val result : Result = validation.validatePin("123456")
+
+        Assert.assertNotNull(result)
+        Assert.assertTrue(result.status)
+    }
 }

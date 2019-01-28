@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/custom_dialog_bg"
@@ -16,7 +17,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="@string/header"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/header"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,16 +25,15 @@
 
     <TextView
         android:id="@+id/tv_message"
-        android:layout_width="335dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="@string/sample_message"
-        android:textSize="@dimen/_13sdp"
+        android:textSize="@dimen/text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
@@ -42,25 +42,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_message">
 
-    <Button
-        android:id="@+id/btn_first"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/_13sdp"/>
+        <Button
+            android:id="@+id/btn_first"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text" />
 
-    <Button
-        android:id="@+id/btn_second"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textSize="@dimen/_13sdp"/>
+        <Button
+            android:id="@+id/btn_second"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

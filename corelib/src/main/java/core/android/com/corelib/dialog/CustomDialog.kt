@@ -28,7 +28,7 @@ class CustomDialog @Inject constructor(context: Context) {
 
         this.context = context
 
-        dialog = Dialog(context)
+        dialog = Dialog(context, R.style.CustomDialog)
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog?.setContentView(R.layout.custom_dialog)
         dialog?.setCancelable(false)
@@ -40,74 +40,79 @@ class CustomDialog @Inject constructor(context: Context) {
         llButtons       = dialog?.ll_buttons
     }
 
-
-    fun showDialog(dialogBuilder: DialogBuilder){
-
+    fun showDialog(dialogBuilder: CustomDialogBuilder){
 
         ///////////////////////////////////////////////
         // Header
         ///////////////////////////////////////////////
-        dialogBuilder.headerBuilder?.apply {
-
+        dialogBuilder.header?.apply {
             tvHeader?.visibility = View.VISIBLE
-            tvHeader?.text = this.title
-            tvHeader?.textSize = this.size.toFloat()
-
-            setColor(tvHeader!!.rootView, this.color)
-
+            tvHeader?.text = this
+            setColor(tvHeader!!, dialogBuilder.headerColor)
         }
 
         ///////////////////////////////////////////////
         // Message
         ///////////////////////////////////////////////
-        tvMessage?.text = dialogBuilder.messageBuilder.message
-        tvMessage?.textSize = dialogBuilder.messageBuilder.size.toFloat()
-
-        setColor(tvMessage!!.rootView, dialogBuilder.messageBuilder.color)
+        tvMessage?.text = dialogBuilder.message
+        setColor(tvMessage!!, dialogBuilder.messageColor)
 
         ///////////////////////////////////////////////
         // First Button
         ///////////////////////////////////////////////
-        btnFirstButton?.text = dialogBuilder.firstButtonBuilder.label
-        btnFirstButton?.background = dialogBuilder.firstButtonBuilder.background
-        btnFirstButton?.textSize = dialogBuilder.firstButtonBuilder.textSize.toFloat()
+        btnFirstButton?.text = dialogBuilder.firstButton
+        btnFirstButton?.background = ContextCompat.getDrawable(context!!, dialogBuilder.firstButtonBackground)
+        setColor(btnFirstButton!!, dialogBuilder.firstButtonTextColor)
 
         btnFirstButton?.setOnClickListener {
-            dialogBuilder.firstButtonBuilder.action?.invoke()
+            dialogBuilder.firstButtonAction?.invoke()
+            dialog?.dismiss()
         }
-
-        setColor(btnFirstButton!!.rootView, dialogBuilder.firstButtonBuilder.textColor)
 
         ///////////////////////////////////////////////
         // Second Button
         ///////////////////////////////////////////////
-        dialogBuilder.secondButtonBuilder?.apply {
+        dialogBuilder.secondButton?.apply {
             btnSecondButton?.visibility = View.VISIBLE
-            btnSecondButton?.text = this.label
-            btnSecondButton?.background = this.background
-            btnSecondButton?.textSize = this.textSize.toFloat()
+            btnSecondButton?.text = this
+            btnSecondButton?.background = ContextCompat.getDrawable(context!!, dialogBuilder.secondButtonBackground)
+            setColor(btnSecondButton!!, dialogBuilder.secondButtonTextColor)
 
             btnSecondButton?.setOnClickListener {
-                this.action?.invoke()
+                dialogBuilder.secondButtonAction?.invoke()
+                dialog?.dismiss()
             }
 
-            setColor(btnSecondButton!!.rootView, this.textColor)
+            //check orientation
+            if(dialogBuilder.isVertical){
+                llButtons?.orientation = LinearLayout.VERTICAL
+
+                val params: LinearLayout.LayoutParams =
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT)
+
+                btnFirstButton?.layoutParams = params
+
+                params.setMargins(0, 10, 0, 0)
+                btnSecondButton?.layoutParams = params
+
+            }
         }
 
-        if(dialog?.isShowing!!)
+        if(!dialog?.isShowing!!)
             dialog?.show()
-    }
-
-    private fun setColor(view : View, color : Int){
-        if(view is Button && view is TextView){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                view?.setTextColor(context!!.getColor(color))
-            else
-                view?.setTextColor(ContextCompat.getColor(context!!, color))
-        }
     }
 
     fun isShowing(): Boolean?{
         return dialog?.isShowing
+    }
+}
+
+fun CustomDialog.setColor(view : View, color : Int){
+    if(view is TextView) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            view?.setTextColor(context!!.getColor(color))
+         else
+            view?.setTextColor(ContextCompat.getColor(context!!, color))
     }
 }
