@@ -84,4 +84,59 @@ class ValidationTest {
         Assert.assertNotNull(result)
         Assert.assertFalse(result.message, result.status)
     }
+
+    @Test
+    fun shouldShowErrorWithEmptyPin(){
+
+        val result : Result = validation.validatePin("")
+
+        Assert.assertNotNull(result)
+        Assert.assertFalse(result.message, result.status)
+    }
+
+    @Test
+    fun shouldShowErrorWithIncompletePin(){
+
+        val result : Result = validation.validatePin("123")
+
+        Assert.assertNotNull(result)
+        Assert.assertFalse(result.message, result.status)
+    }
+
+    @Test
+    fun shouldShowSuccessPinValidation(){
+
+        val result : Result = validation.validatePin("1234")
+
+        Assert.assertNotNull(result)
+        Assert.assertTrue(result.status)
+
+    }
+
+    @Test
+    fun shouldShowErrorWithInvalidOtp(){
+
+        val result : Result = validation.validateOtp("")
+
+        Assert.assertNotNull(result)
+        Assert.assertFalse(result.message, result.status)
+    }
+
+    @Test
+    fun shouldShowErrorWithIncompleteOtp(){
+
+        val result : Result = validation.validateOtp("12345")
+
+        Assert.assertNotNull(result)
+        Assert.assertFalse(result.message, result.status)
+    }
+
+    @Test
+    fun shouldShowSuccessWithCorrectPin(){
+
+        val result : Result = validation.validatePin("123456")
+
+        Assert.assertNotNull(result)
+        Assert.assertTrue(result.status)
+    }
 }
