@@ -2,6 +2,7 @@ package core.android.com.corelib.camera
 
 import android.content.Context
 import android.support.annotation.IntDef
+import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout

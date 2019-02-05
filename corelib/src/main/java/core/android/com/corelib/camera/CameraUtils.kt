@@ -3,8 +3,13 @@ package core.android.com.corelib.camera
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.media.ExifInterface
+import android.os.Handler
+import android.os.HandlerThread
 import android.util.Base64
 import java.io.ByteArrayOutputStream
+import java.io.FileInputStream
+import java.io.IOException
 
 object CameraUtils {
     fun convertImageToBase64(pathToImage: String): String? {
@@ -20,10 +25,44 @@ object CameraUtils {
     }
 
     /**
+     * Rotates image
+     */
+    fun getRotatedBitmap(filename: String): Bitmap {
+        val ims = FileInputStream(filename)
+        val capturedImg = BitmapFactory.decodeStream(ims)
+        val exif = ExifInterface(filename)
+        val rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        val rotationInDegrees = exifToDegrees(rotation)
+        val matrix = Matrix()
+        if (rotation.toFloat() != 0f) {
+            matrix.preRotate(rotationInDegrees.toFloat())
+        }
+        return Bitmap.createBitmap(capturedImg, 0, 0, capturedImg.width, capturedImg.height, matrix, true)
+    }
+
+    /**
+     * Gets the Amount of Degress of rotation using the exif integer to determine how much
+     * we should rotate the image.
+     *
+     * @param exifOrientation - the Exif data for Image Orientation
+     * @return - how much to rotate in degress
+     */
+    private fun exifToDegrees(exifOrientation: Int): Int {
+        return when (exifOrientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> 90
+            ExifInterface.ORIENTATION_ROTATE_180 -> 180
+            ExifInterface.ORIENTATION_ROTATE_270 -> 270
+            else -> 0
+        }
+
+    }
+
+
+    /**
      * Configures the transform matrix for TextureView based on Display Orientation and
      * the surface size.
      */
-    fun configureTransform(displayOrientation : Int, width: Int, height: Int) : Matrix {
+    fun configureTransform(displayOrientation: Int, width: Int, height: Int): Matrix {
         val matrix = Matrix()
         if (displayOrientation % 180 == 90) {
             /**
@@ -55,8 +94,14 @@ object CameraUtils {
                     , 0,
                     4)
         } else if (displayOrientation == 180) {
-            matrix.postRotate(180f, (width/ 2).toFloat(), (height / 2).toFloat())
+            matrix.postRotate(180f, (width / 2).toFloat(), (height / 2).toFloat())
         }
         return matrix;
+    }
+
+    fun startBackgroundHandler(): Handler {
+        val thread = HandlerThread("background")
+        thread.start()
+        return Handler(thread.looper)
     }
 }
