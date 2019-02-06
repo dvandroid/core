@@ -1,9 +1,10 @@
 package core.android.com.corelib.source.local
 
 import core.android.com.corelib.module.AccessToken
+import javax.inject.Inject
 
 
-class AccessTokenWrapper constructor(private val sharedPrefApi: SharedPrefModule) {
+class AccessTokenWrapper @Inject constructor(private val sharedPrefApi: SharedPrefModule) {
     private var accessToken: AccessToken? = null
 
     fun getAccessToken(): AccessToken? {

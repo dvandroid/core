@@ -39,6 +39,7 @@ dependencies {
 
     implementation AppDeps.kotlin
     implementation SupportDeps.compat
+    implementation SupportDeps.compatv13
     implementation SupportDeps.constraintLayout
 
     implementation DaggerDeps.dagger

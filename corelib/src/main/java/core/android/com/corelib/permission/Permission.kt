@@ -1,85 +1,131 @@
 package core.android.com.corelib.permission
 
+import android.Manifest
+import core.android.com.corelib.R
+
 import android.app.Activity
-import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
+import android.support.v13.app.FragmentCompat
 import android.support.v4.app.ActivityCompat
-import core.android.com.corelib.permission.PermissionCallback.onPermissionGranted
-import core.android.com.corelib.permission.PermissionCallback.onPermissionDisabled
-import core.android.com.corelib.permission.PermissionCallback.onNeedPermission
-import core.android.com.corelib.permission.PermissionCallback.onPermissionPreviouslyDenied
+import android.support.v4.app.ActivityCompat.requestPermissions
 import android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale
+import android.support.v4.content.PermissionChecker
 
 
-object Permission {
+fun isLollipopOrBellow(): Boolean = (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.LOLLIPOP)
 
+/**************************************
+ * HANDLE PERMISSIONS IN FRAGMENTS    *
+ *************************************/
 
-    /** Check if version is marshmallow and above.
-     *  Used in deciding to ask runtime permission
-     */
-    private fun shouldAskPermission(): Boolean {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+inline fun android.app.Fragment.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(activity, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
+
+inline fun android.app.Fragment.isRationaleNeeded(permission: AppPermission) = FragmentCompat.shouldShowRequestPermissionRationale(this, permission.permissionName)
+
+inline fun android.app.Fragment.requestPermission(permission: AppPermission) = FragmentCompat.requestPermissions(this, arrayOf(permission.permissionName), permission.requestCode)
+
+inline fun android.app.Fragment.handlePermission(permission: AppPermission,
+                                                 onGranted: (AppPermission) -> Unit,
+                                                 onDenied: (AppPermission) -> Unit,
+                                                 onRationaleNeeded: (AppPermission) -> Unit) {
+    when {
+        isLollipopOrBellow() || isPermissionGranted(permission) -> onGranted(permission)
+        isRationaleNeeded(permission) -> onRationaleNeeded(permission)
+        else -> onDenied(permission)
     }
-
-
-    private fun shouldAskPermission(context: Context?, permission: String?): Boolean {
-        if (shouldAskPermission()) {
-            if (ActivityCompat.checkSelfPermission(context!!, permission!!) != PackageManager.PERMISSION_GRANTED) {
-                return true
-            }
-        }
-        return true
-    }
-
-    /** Request permission for a single time
-     *
-     * @param context = context of activity
-     * @param permissions = list of permission this should be the format
-     *
-     *  Ex: arrayOf<String>(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS,
-     *  Manifest.permission.WRITE_EXTERNAL_STORAGE)
-     */
-
-    fun shouldAskPermission(context: Context?, vararg permissions: String?): Boolean {
-        if (shouldAskPermission()) {
-            permissions.forEach { permission ->
-                if (ActivityCompat.checkSelfPermission(context!!, permission!!) != PackageManager.PERMISSION_GRANTED) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
-
-    fun checkPermission(context: Context, permission: String, callback: (PermissionCallback) -> Unit) {
-
-        if (shouldAskPermission(context, permission)) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, permission)) {
-                callback.invoke(PermissionCallback.onNeedPermission)
-            } else {
-
-                /** Permission denied or first time requested
-                 **/
-                /* if (PreferencesUtcontextil.isFirstTimeAskingPermission(context, permission)) {
-                  //   PreferencesUtil.firstTimeAskingPermission(context, permission, false)
-                  //  callback.invoke(PermissionCallback.onNeedPermission)
-                 } else {
-
-                // callback.invoke(PermissionCallback.onPermissionDisabled)
-
-                }
-             */
-            }
-
-            /** Handle the feature without permission or ask user to manually allow permission
-             */
-            callback.invoke(PermissionCallback.onPermissionDisabled)
-        } else {
-            callback.invoke(PermissionCallback.onPermissionGranted)
-        }
-    }
-
 }
+
+inline fun android.app.Fragment.handlePermission(permission: AppPermission,
+                                                 onGranted: (AppPermission) -> Unit,
+                                                 onRationaleNeeded: (AppPermission) -> Unit) {
+    when {
+        isLollipopOrBellow() || isPermissionGranted(permission) -> onGranted(permission)
+        isRationaleNeeded(permission) -> onRationaleNeeded(permission)
+        else -> requestPermission(permission)
+    }
+}
+
+
+/**************************************
+ * HANDLE PERMISSIONS IN v4 FRAGMENTS *
+ *************************************/
+
+inline fun android.support.v4.app.Fragment.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(activity!!, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
+
+inline fun android.support.v4.app.Fragment.isRationaleNeeded(permission: AppPermission) = shouldShowRequestPermissionRationale(activity!!, permission.permissionName)
+
+inline fun android.support.v4.app.Fragment.requestPermission(permission: AppPermission) = requestPermissions(arrayOf(permission.permissionName), permission.requestCode)
+
+inline fun android.support.v4.app.Fragment.handlePermission(permission: AppPermission,
+                                                            onGranted: (AppPermission) -> Unit,
+                                                            onDenied: (AppPermission) -> Unit,
+                                                            onRationaleNeeded: (AppPermission) -> Unit) {
+    when {
+        isLollipopOrBellow() || isPermissionGranted(permission) -> onGranted(permission)
+        isRationaleNeeded(permission) -> onRationaleNeeded(permission)
+        else -> onDenied(permission)
+    }
+}
+
+inline fun android.support.v4.app.Fragment.handlePermission(permission: AppPermission,
+                                                            onGranted: (AppPermission) -> Unit,
+                                                            onRationaleNeeded: (AppPermission) -> Unit) {
+    when {
+        isLollipopOrBellow() || isPermissionGranted(permission) -> onGranted(permission)
+        isRationaleNeeded(permission) -> onRationaleNeeded(permission)
+        else -> requestPermission(permission)
+    }
+}
+
+/************************************
+ * HANDLE PERMISSIONS IN ACTIVITIES *
+ ***********************************/
+
+inline fun Activity.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(this, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
+
+inline fun Activity.isRationaleNeeded(permission: AppPermission) = ActivityCompat.shouldShowRequestPermissionRationale(this, permission.permissionName)
+
+inline fun Activity.requestPermission(permission: AppPermission) = requestPermissions(this, arrayOf(permission.permissionName), permission.requestCode)
+
+inline fun Activity.handlePermission(permission: AppPermission,
+                                     onGranted: (AppPermission) -> Unit,
+                                     onDenied: (AppPermission) -> Unit,
+                                     onRationaleNeeded: (AppPermission) -> Unit) {
+    when {
+        isLollipopOrBellow() || isPermissionGranted(permission) -> onGranted(permission)
+        isRationaleNeeded(permission) -> onRationaleNeeded(permission)
+        else -> onDenied(permission)
+    }
+}
+
+inline fun Activity.handlePermission(permission: AppPermission,
+                                     onGranted: (AppPermission) -> Unit,
+                                     onRationaleNeeded: (AppPermission) -> Unit) {
+    when {
+        isLollipopOrBellow() || isPermissionGranted(permission) -> onGranted(permission)
+        isRationaleNeeded(permission) -> onRationaleNeeded(permission)
+        else -> requestPermission(permission)
+    }
+}
+
+/*********************************************
+ * HANDLE onRequestPermissionResult CALLBACK *
+ ********************************************/
+
+fun onRequestPermissionsResultReceived(requestCode: Int, permissions: Array<out String>,
+                                       grantResults: IntArray,
+                                       onPermissionGranted: (AppPermission) -> Unit,
+                                       onPermissionDenied: (AppPermission) -> Unit) {
+    AppPermission.permissions.find {
+        it.requestCode == requestCode
+    }?.let {
+        val permissionGrantResult = mapPermissionsAndResults(permissions, grantResults)[it.permissionName]
+        if (PackageManager.PERMISSION_GRANTED == permissionGrantResult) {
+            onPermissionGranted(it)
+        } else {
+            onPermissionDenied(it)
+        }
+    }
+}
+
+private fun mapPermissionsAndResults(permissions: Array<out String>, grantResults: IntArray): Map<String, Int> = permissions.mapIndexedTo(mutableListOf<Pair<String, Int>>()) { index, permission -> permission to grantResults[index] }.toMap()
