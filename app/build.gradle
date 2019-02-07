@@ -59,6 +59,8 @@ dependencies {
     implementation RxDeps.android
     implementation RxDeps.java
 
+    implementation OtherDeps.zxing
+
     implementation OtherDeps.sdp
 
 }

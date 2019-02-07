@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <core.android.com.corelib.camera.qr.ScannerCoreView
+        android:id="@+id/scanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></core.android.com.corelib.camera.qr.ScannerCoreView>
+</android.support.constraint.ConstraintLayout>
