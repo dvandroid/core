@@ -6,12 +6,16 @@ import android.util.Log
 import android.widget.Toast
 import core.android.com.corelib.dialog.*
 import core.android.com.corelib.helper.Validation
+import core.android.com.corelib.ui.custom.BottomSheetListDialog
 import dagger.Component
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var validation: Validation
+
+    /*private val list = arrayListOf<String>("Item 1", "Item 2", "Item 3", "Item 4")
+    private var bottomSheetListDialog: BottomSheetListDialog? = null*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,12 @@ class MainActivity : AppCompatActivity() {
 
         var customDialog = CustomDialog(this)
         customDialog.showDialog(dialogBuilder)*/
+
+        /*bottom_sheet.sheetBehavior?.apply {
+            isHideable = true
+            peekHeight = 56.dpToPx
+        }*/
+        /*bottomSheetListDialog = BottomSheetListDialog(this, list)*/
 
     }
 }
