@@ -1,28 +1,18 @@
 package core.android.com.corelib.custom.button
 
-import android.content.res.ColorStateList
-import android.graphics.PorterDuff
-import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.GradientDrawable
 
 
 class MaterialCoreButtonHelper {
 
-    private val materialButton: MaterialCoreButton? = null
 
-    private val insetLeft: Int = 0
-    private val insetRight: Int = 0
-    private val cornerRadius: Int = 0
-    private val topOnlycornerRadius: Int = 0
-    private val strokeWidth: Int = 0
-
-    private val backgroundTintMode: PorterDuff.Mode? = null
-    private val backgroundTint: ColorStateList? = null
-    private val strokeColor: ColorStateList? = null
-    private val rippleColor: ColorStateList? = null
-
-    private val cornerRadiusSet = false
-    private val rippleDrawable: LayerDrawable? = null
-
-
+    fun createShapeDrawable(shapeModel: ShapeModel): GradientDrawable {
+        val shape = GradientDrawable()
+        shape.shape = GradientDrawable.RECTANGLE
+        shape.cornerRadii = floatArrayOf(shapeModel.radius!!, shapeModel.radius!!, shapeModel.radius!!, shapeModel.radius!!, 0f, 0f, 0f, 0f)
+        shape.setColor(shapeModel.shapeFill!!)
+        shape.setStroke(3, shapeModel.shapeStrokeColor!!)
+        return shape
+    }
 
 }

@@ -6,16 +6,16 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import core.android.com.android_core.view.ButtonFragmentSample
 import core.android.com.android_core.view.CameraSample
 import core.android.com.android_core.view.QRScannerSample
 import core.android.com.corelib.camera.CameraUtils
 import core.android.com.corelib.camera.IMAGE_URI
 import core.android.com.corelib.camera.REQUEST_CAMERA_INTENT
-import core.android.com.corelib.dialog.*
 import core.android.com.corelib.helper.Validation
+import core.android.com.corelib.helper.addFragment
 import dagger.Component
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         btn_camera.setOnClickListener(this)
         btn_qr.setOnClickListener(this)
+        btn_btns.setOnClickListener(this)
 
         /* //create dialog builder
          var dialogBuilder = JvmBuilder_CustomDialogBuilder().header("HEADER")
@@ -57,9 +58,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 startActivityForResult(Intent(this, CameraSample::class.java), REQUEST_CAMERA_INTENT)
             R.id.btn_qr ->
                 startActivityForResult(Intent(this, QRScannerSample::class.java), REQUEST_CAMERA_INTENT)
-
+            R.id.btn_btns ->
+                addFragment(ButtonFragmentSample(), R.id.contentFrame)
         }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -70,13 +73,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         val options = BitmapFactory.Options()
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888
                         val bitmap = CameraUtils.getRotatedBitmap(data!!.getStringExtra(IMAGE_URI))
-                        iv_captured_img.setImageBitmap(bitmap)
                     }
                 }
             }
         }
     }
 }
+
 
 @Component
 interface MainActivityComponent {

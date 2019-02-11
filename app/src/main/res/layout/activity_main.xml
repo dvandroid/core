@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="QR"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_btns"
+        app:layout_constraintEnd_toStartOf="@id/btn_camera"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_dialog" />
 
@@ -29,24 +30,33 @@
         android:id="@+id/btn_camera"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Camera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_qr" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_btns"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/btn_qr"
+        app:layout_constraintTop_toTopOf="@+id/btn_qr" />
 
-    <ImageView
-        android:id="@+id/iv_captured_img"
+    <Button
+        android:id="@+id/btn_btns"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_camera"
+        app:layout_constraintTop_toTopOf="@+id/btn_camera" />
+
+    <FrameLayout
+        android:id="@+id/contentFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_camera"
+        app:layout_constraintTop_toBottomOf="@+id/btn_btns"
         app:srcCompat="@color/colorPrimary" />
-
 
 </android.support.constraint.ConstraintLayout>
