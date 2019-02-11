@@ -15,4 +15,15 @@
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
 
+    <style name="Widget.MaterialComponents.Button" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textColor">@color/core_btn_dark_text_color</item>
+        <item name="android:paddingLeft">@dimen/mtrl_btn_padding_left</item>
+        <item name="android:layout_margin">@dimen/mtrl_btn_margin</item>
+        <item name="android:paddingRight">@dimen/mtrl_btn_padding_right</item>
+        <item name="android:paddingTop">@dimen/mtrl_btn_padding</item>
+        <item name="android:paddingBottom">@dimen/mtrl_btn_padding</item>
+        <item name="cornerRadius">@null</item>
+    </style>
+
+
 </resources>

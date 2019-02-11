@@ -1,5 +1,10 @@
 package core.android.com.corelib.camera
 
+
+/**
+ * Constants for Camera2 and QR Reader
+ */
+
 val DEFAULT_ASPECT_RATIO = AspectRatio.of(1, 1)
 const val FACING_BACK = 0
 const val FACING_FRONT = 1
@@ -28,3 +33,29 @@ const val MAX_PREVIEW_WIDTH = 1920
  * Max preview height that is guaranteed by Camera2 API
  */
 const val MAX_PREVIEW_HEIGHT = 1080
+
+
+//////////////////////////////////////////////////
+/**
+ * Constants for Material Button
+ */
+
+/**
+ * Button appearance
+ */
+const val SOLID = 0
+const val SOLID_STROKE = 1
+const val STROKE_ONLY = 2
+const val TRANSPARENT = 3
+
+/**
+ * Button types
+ */
+const val RECTANGLE = 0
+const val SQUIRCLE = 1
+const val ROUND = 2
+
+const val SQUIRCLE_RADIUS = 16F
+const val ROUND_RADIUS = 64F
+
+
