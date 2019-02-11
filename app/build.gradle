@@ -9,6 +9,8 @@ apply plugin: 'kotlin-kapt'
 
 apply from: '../config-properties.gradle'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion Versions.targetSdk
 
@@ -26,6 +28,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':corelib')
 
     implementation AppDeps.kotlin
     implementation SupportDeps.compat
@@ -55,6 +59,6 @@ dependencies {
     implementation RxDeps.android
     implementation RxDeps.java
 
-    implementation project(path: ':corelib')
+    implementation OtherDeps.sdp
 
 }
