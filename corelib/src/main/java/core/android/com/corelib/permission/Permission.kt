@@ -1,8 +1,5 @@
 package core.android.com.corelib.permission
 
-import android.Manifest
-import core.android.com.corelib.R
-
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.support.v13.app.FragmentCompat
@@ -18,11 +15,11 @@ fun isLollipopOrBellow(): Boolean = (android.os.Build.VERSION.SDK_INT <= android
  * HANDLE PERMISSIONS IN FRAGMENTS    *
  *************************************/
 
-inline fun android.app.Fragment.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(activity, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
+fun android.app.Fragment.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(activity, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
 
-inline fun android.app.Fragment.isRationaleNeeded(permission: AppPermission) = FragmentCompat.shouldShowRequestPermissionRationale(this, permission.permissionName)
+fun android.app.Fragment.isRationaleNeeded(permission: AppPermission) = FragmentCompat.shouldShowRequestPermissionRationale(this, permission.permissionName)
 
-inline fun android.app.Fragment.requestPermission(permission: AppPermission) = FragmentCompat.requestPermissions(this, arrayOf(permission.permissionName), permission.requestCode)
+fun android.app.Fragment.requestPermission(permission: AppPermission) = FragmentCompat.requestPermissions(this, arrayOf(permission.permissionName), permission.requestCode)
 
 inline fun android.app.Fragment.handlePermission(permission: AppPermission,
                                                  onGranted: (AppPermission) -> Unit,
@@ -50,11 +47,11 @@ inline fun android.app.Fragment.handlePermission(permission: AppPermission,
  * HANDLE PERMISSIONS IN v4 FRAGMENTS *
  *************************************/
 
-inline fun android.support.v4.app.Fragment.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(activity!!, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
+fun android.support.v4.app.Fragment.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(activity!!, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
 
-inline fun android.support.v4.app.Fragment.isRationaleNeeded(permission: AppPermission) = shouldShowRequestPermissionRationale(activity!!, permission.permissionName)
+fun android.support.v4.app.Fragment.isRationaleNeeded(permission: AppPermission) = shouldShowRequestPermissionRationale(activity!!, permission.permissionName)
 
-inline fun android.support.v4.app.Fragment.requestPermission(permission: AppPermission) = requestPermissions(arrayOf(permission.permissionName), permission.requestCode)
+fun android.support.v4.app.Fragment.requestPermission(permission: AppPermission) = requestPermissions(arrayOf(permission.permissionName), permission.requestCode)
 
 inline fun android.support.v4.app.Fragment.handlePermission(permission: AppPermission,
                                                             onGranted: (AppPermission) -> Unit,
@@ -81,11 +78,11 @@ inline fun android.support.v4.app.Fragment.handlePermission(permission: AppPermi
  * HANDLE PERMISSIONS IN ACTIVITIES *
  ***********************************/
 
-inline fun Activity.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(this, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
+fun Activity.isPermissionGranted(permission: AppPermission) = (PermissionChecker.checkSelfPermission(this, permission.permissionName) == PackageManager.PERMISSION_GRANTED)
 
-inline fun Activity.isRationaleNeeded(permission: AppPermission) = ActivityCompat.shouldShowRequestPermissionRationale(this, permission.permissionName)
+fun Activity.isRationaleNeeded(permission: AppPermission) = ActivityCompat.shouldShowRequestPermissionRationale(this, permission.permissionName)
 
-inline fun Activity.requestPermission(permission: AppPermission) = requestPermissions(this, arrayOf(permission.permissionName), permission.requestCode)
+fun Activity.requestPermission(permission: AppPermission) = requestPermissions(this, arrayOf(permission.permissionName), permission.requestCode)
 
 inline fun Activity.handlePermission(permission: AppPermission,
                                      onGranted: (AppPermission) -> Unit,

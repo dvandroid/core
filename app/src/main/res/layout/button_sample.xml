@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <core.android.com.corelib.custom.button.MaterialCoreButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/app_name"
+            app:backgroundColor="@color/colorPrimary"
+            app:buttonAppearance="solid"
+            app:buttonType="round" />
+
+        <core.android.com.corelib.custom.button.MaterialCoreButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            app:backgroundColor="@color/colorPrimary"
+            app:buttonAppearance="solid_stroked"
+            app:buttonType="round"
+            app:strokeColor="@color/colorAccent" />
+
+
+        <core.android.com.corelib.custom.button.MaterialCoreButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            app:backgroundColor="@color/colorPrimary"
+            app:buttonAppearance="solid"
+            app:buttonType="squircle" />
+
+
+        <core.android.com.corelib.custom.button.MaterialCoreButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            app:backgroundColor="@color/colorPrimary"
+            app:buttonAppearance="stroked"
+            app:buttonType="squircle"
+            app:strokeColor="@color/colorAccent" />
+
+        <core.android.com.corelib.custom.button.MaterialCoreButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            app:backgroundColor="@color/colorPrimary"
+            app:buttonAppearance="solid"
+            app:buttonType="rect" />
+
+    </LinearLayout>
+</ScrollView>

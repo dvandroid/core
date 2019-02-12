@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log.d
 import android.widget.Button
 import core.android.com.android_core.api.endpoints.FirstTestApi
+import core.android.com.corelib.dialog.CustomDialog
 import core.android.com.corelib.helper.Validation
 import core.android.com.corelib.permission.AppPermission
 import core.android.com.corelib.permission.handlePermission
@@ -23,7 +24,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
 
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

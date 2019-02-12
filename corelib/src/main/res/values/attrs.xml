@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="materialThemeOverlay" format="reference"/>
+
+    <declare-styleable name="MaterialCoreButton">
+        <!-- Background for the MaterialButton -->
+        <attr name="backgroundColor" />
+        <!-- Specifies the color used to draw the path outline of the button. Attribute type definition
+             is in resources package. -->
+        <attr name="strokeColor" />
+        <!-- Width of the stroke path of the button. Default is 0. Attribute type definition is in
+             resources package. -->
+        <attr name="strokeWidth" />
+        <attr name="buttonType" format="enum">
+            <enum name="rect" value="0" />
+            <enum name="squircle" value="1" />
+            <enum name="round" value="2" />
+        </attr>
+        <attr name="buttonAppearance" format="enum">
+            <enum name="solid" value="0" />
+            <enum name="solid_stroked" value="1" />
+            <enum name="stroked" value="2" />
+            <enum name="transparent" value="3" />
+        </attr>
+
+    </declare-styleable>
+
+</resources>
