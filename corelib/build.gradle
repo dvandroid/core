@@ -71,8 +71,9 @@ dependencies {
     implementation OtherDeps.sdp
 
     implementation OtherDeps.zxing
-
+    implementation OtherDeps.timber
     implementation OtherDeps.jvm
+
     kapt OtherDeps.kjvm
 }
 

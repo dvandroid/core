@@ -1,4 +1,4 @@
-package core.android.com.android_core
+package core.android.com.android_core.modules.destination
 
 
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.support.DaggerFragment
+import core.android.com.android_core.R
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -18,12 +18,12 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class SplashFragment : DaggerFragment() {
+class RewardDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash, container, false)
+        return inflater.inflate(R.layout.fragment_reward_detail, container, false)
     }
 
 

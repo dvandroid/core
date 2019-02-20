@@ -9,7 +9,6 @@ apply plugin: 'kotlin-kapt'
 
 apply from: '../config-properties.gradle'
 
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.targetSdk
@@ -64,6 +63,7 @@ dependencies {
     implementation OtherDeps.zxing
 
     implementation OtherDeps.sdp
+    implementation OtherDeps.timber
 
 
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha11'

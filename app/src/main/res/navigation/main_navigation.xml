@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="core.android.com.android_core.SplashFragment"
+        android:name="core.android.com.android_core.modules.destination.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="core.android.com.android_core.DashboardFragment"
+        android:name="core.android.com.android_core.modules.destination.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/rewardListFragment"
-        android:name="core.android.com.android_core.RewardListFragment"
+        android:name="core.android.com.android_core.modules.destination.RewardListFragment"
         android:label="fragment_reward_list"
         tools:layout="@layout/fragment_reward_list" >
         <action
@@ -52,12 +52,12 @@
     </fragment>
     <fragment
         android:id="@+id/rewardDetailFragment"
-        android:name="core.android.com.android_core.RewardDetailFragment"
+        android:name="core.android.com.android_core.modules.destination.RewardDetailFragment"
         android:label="fragment_reward_detail"
         tools:layout="@layout/fragment_reward_detail" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="core.android.com.android_core.SettingsFragment"
+        android:name="core.android.com.android_core.modules.destination.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 

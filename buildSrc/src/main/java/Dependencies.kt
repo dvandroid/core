@@ -39,9 +39,19 @@ object Versions {
     internal var okHttp = "3.9.0"
     internal var moshi = "1.5.0"
     internal var kotshi = "1.0.5"
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // OTHERS                                                                                 //
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     internal var sdp = "1.0.5"
     internal var jvm = "0.0.4"
     internal var zxing = "1.9.8"
+    internal var timber = "4.7.1"
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // TESTING                                                                                //
@@ -118,6 +128,7 @@ object OtherDeps {
     var jvm = "io.github.jffiorillo:jvmbuilder-annotations:${Versions.jvm}"
     var kjvm = "io.github.jffiorillo:jvmbuilder:${Versions.jvm}"
     var zxing = "me.dm7.barcodescanner:zbar:${Versions.zxing}"
+    var timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
 
 object TestingDeps {

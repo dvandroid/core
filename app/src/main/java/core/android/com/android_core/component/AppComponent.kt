@@ -3,6 +3,7 @@ package core.android.com.android_core.component
 import core.android.com.android_core.App
 import core.android.com.android_core.api.ApiModule
 import core.android.com.android_core.modules.ActivityModule
+
 import core.android.com.corelib.inject.scopes.PerApplication
 import core.android.com.android_core.network.TokenInterceptor
 import core.android.com.corelib.module.BaseModule
