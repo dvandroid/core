@@ -7,8 +7,6 @@ import core.android.com.android_core.api.endpoints.SecondTestApi
 import core.android.com.corelib.inject.scopes.PerApplication
 import dagger.Module
 import dagger.Provides
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,6 +14,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
+import okhttp3.Authenticator
 
 @Module
 class ApiModule {
@@ -25,15 +24,16 @@ class ApiModule {
     fun provideFirstTestApi(builder: Retrofit.Builder,
                             okHttpClientBuilder: OkHttpClient.Builder,
                             httpLoggingInterceptor: HttpLoggingInterceptor,
-                            converterFactory: Converter.Factory,
-                            apiKeyInterceptor: Interceptor): FirstTestApi {
+                            converterFactory: Converter.Factory
+                            /*  authenticator: Authenticator,*/
+            /* apiKeyInterceptor: Interceptor*/): FirstTestApi {
 
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor)
         }
 
-        okHttpClientBuilder.addNetworkInterceptor(apiKeyInterceptor)
+        okHttpClientBuilder
                 .retryOnConnectionFailure(true)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -55,15 +55,16 @@ class ApiModule {
     fun provideSecondTestApi(builder: Retrofit.Builder,
                              okHttpClientBuilder: OkHttpClient.Builder,
                              httpLoggingInterceptor: HttpLoggingInterceptor,
-                             converterFactory: Converter.Factory,
-                             apiKeyInterceptor: Interceptor): SecondTestApi {
+                             converterFactory: Converter.Factory
+                             /* authenticator: Authenticator,*/
+            /*  apiKeyInterceptor: Interceptor*/): SecondTestApi {
 
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor)
         }
 
-        okHttpClientBuilder.addNetworkInterceptor(apiKeyInterceptor)
+        okHttpClientBuilder
                 .retryOnConnectionFailure(true)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -78,20 +79,5 @@ class ApiModule {
                 .build()
                 .create(SecondTestApi::class.java)
     }
-
-//    fun loadRepository(owner: String, name: String) =
-//            mGithubService.getRepository(owner, name)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())!!
-
-//    ApiManager.loadOrganizationRepos(ORGANIZATION_NAME, REPOS_TYPE)
-//    .doOnError { mView?.showMessage(it.toString()) }
-//    .subscribe(Action1 { mView?.showOrganizations(it) },
-//    GeneralErrorHandler(mView, true) {
-//        throwable, errorBody, isNetwork -> mView?.showError(throwable.message) })
-//}
-//}
-
-
 
 }
