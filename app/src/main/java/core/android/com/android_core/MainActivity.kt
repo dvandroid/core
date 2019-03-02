@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import core.android.com.android_core.view.ButtonFragmentSample
 import core.android.com.android_core.view.CameraSample
 import core.android.com.android_core.view.QRScannerSample
@@ -19,6 +18,7 @@ import core.android.com.corelib.helper.addFragment
 import dagger.Component
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_camera.setOnClickListener(this)
         btn_qr.setOnClickListener(this)
         btn_btns.setOnClickListener(this)
-
         /* //create dialog builder
          var dialogBuilder = JvmBuilder_CustomDialogBuilder().header("HEADER")
                  .headerColor(R.color.colorAccent)
@@ -51,6 +50,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
          customDialog.showDialog(dialogBuilder)*/
 
     }
+
 
     override fun onClick(v: View?) {
         when (v!!.id) {

@@ -63,5 +63,4 @@ dependencies {
 
     implementation OtherDeps.sdp
 
-
 }
