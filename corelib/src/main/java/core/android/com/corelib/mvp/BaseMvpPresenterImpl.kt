@@ -1,43 +1,31 @@
 package core.android.com.corelib.mvp
 
 import core.android.com.corelib.helper.SchedulerProvider
-import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 
 
-open class BaseMvpPresenterImpl<V : BaseMvpView> : BaseMvpPresenter<V> {
+abstract class BaseMvpPresenterImpl<V : BaseMvpView, I : BaseMvpInteractor>
+(protected var interactor: I?, protected val schedulerProvider: SchedulerProvider,
+                     protected val compositeDisposable: CompositeDisposable)
+    : BaseMvpPresenter<V, I> {
 
     protected var mView: V? = null
 
-    override fun attachView(view: V) {
-        mView = view
+    private var view: V? = null
+
+    private val isViewAttached: Boolean get() = view != null
+
+    override fun onAttachView(view: V?) {
+        this.view = view
     }
 
-    override fun detachView() {
-        mView = null
-    }
+    override fun getView(): V? = view
 
-    lateinit var mSchedulerProvider: SchedulerProvider
-    lateinit var mCompositeDisposable: CompositeDisposable
-
-
-    fun getSchedulerProvider(): SchedulerProvider {
-        return mSchedulerProvider
+    override fun onDetachView() {
+        compositeDisposable.dispose()
+        view = null
+        interactor = null
     }
 
 
-    fun getCompositeDisposable(): CompositeDisposable {
-        return mCompositeDisposable
-    }
-
-    protected fun <T> applyBinding(): ObservableTransformer<T, T> {
-        return ObservableTransformer { upstream ->
-            upstream.doOnSubscribe { disposable -> bindToLifecycle(disposable) }
-        }
-    }
-
-    private fun bindToLifecycle(disposable: Disposable) {
-        mCompositeDisposable.add(disposable)
-    }
 }

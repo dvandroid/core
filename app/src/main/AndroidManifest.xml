@@ -3,7 +3,10 @@
     package="core.android.com.android_core">
     <uses-permission android:name="android.permission.CAMERA"/>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera"/>
+
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false"/>
@@ -16,15 +19,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.CameraSample" />
-        <activity android:name=".view.QRScannerSample" />
+        <activity android:name=".ui.login.LoginActivity" />
     </application>
 
 </manifest>

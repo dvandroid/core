@@ -39,6 +39,7 @@ object Versions {
     internal var okHttp = "3.9.0"
     internal var moshi = "1.5.0"
     internal var kotshi = "1.0.5"
+    internal var roomDatabaseVersion = "1.0.0"
 
 
 
@@ -122,6 +123,10 @@ object RxDeps {
     var java = "io.reactivex.rxjava2:rxjava:${Versions.rxAndroid}"
 }
 
+object Database{
+    var roomrx =  "android.arch.persistence.room:rxjava2:${Versions.roomDatabaseVersion}"
+    var compiler =  "android.arch.persistence.room:compiler:${Versions.roomDatabaseVersion}"
+}
 
 object OtherDeps {
     var sdp = "com.intuit.sdp:sdp-android:${Versions.sdp}"

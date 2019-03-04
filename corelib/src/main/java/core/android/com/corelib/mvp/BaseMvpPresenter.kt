@@ -1,8 +1,11 @@
 package core.android.com.corelib.mvp
 
-interface BaseMvpPresenter<in V : BaseMvpView> {
+interface BaseMvpPresenter<V : BaseMvpView, I : BaseMvpInteractor> {
 
-    fun attachView(view: V)
+    fun onAttachView(view: V?)
 
-    fun detachView()
+    fun onDetachView()
+
+    fun getView(): V?
+
 }

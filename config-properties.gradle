@@ -39,7 +39,7 @@ android {
     productFlavors {
 
         dev {
-            buildConfigField "String", "FIRST_END_POINT", "\"${config.commonProperties.dev_url}\""
+            buildConfigField "String", "FIRST_END_POINT", "http://www.mydotwidgets.com/"
             buildConfigField "String", "SECOND_END_POINT", "\"${config.commonProperties.dev_url}\""
             buildConfigField "String", "APP_HEADER", "\"${config.commonProperties.header}\""
             buildConfigField "String", "APP_TOKEN", "\"${config.commonProperties.token}\""

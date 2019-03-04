@@ -23,6 +23,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 }
 
 dependencies {
@@ -65,11 +66,19 @@ dependencies {
     implementation OtherDeps.sdp
     implementation OtherDeps.timber
 
+    implementation Database.roomrx
+    kapt Database.compiler
+
+
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+
+
 
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha11'
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha11"
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha11"
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
 }

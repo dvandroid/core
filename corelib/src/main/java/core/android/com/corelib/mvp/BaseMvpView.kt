@@ -9,10 +9,6 @@ interface BaseMvpView {
 
     fun showError(error: String?)
 
-    fun showError(@StringRes stringResId: Int)
-
-    fun showMessage(@StringRes srtResId: Int)
-
     fun showMessage(message: String)
 
     fun showProgress()
