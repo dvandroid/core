@@ -8,8 +8,8 @@ import javax.inject.Inject
 class MainActivityPresenter<V : MainActivityContract.MainActivityMvpView, I : MainActivityContract.MainActivityMvpInteractor>
 @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable)
     : BaseMvpPresenterImpl<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
-        MainActivityContract.SplashMvpPresenter<V, I> {
-    
+        MainActivityContract.MainActivityMvpPresenter<V, I> {
+
     override fun getEmployeeList() {
         interactor?.let {
             compositeDisposable.add(it.getData()

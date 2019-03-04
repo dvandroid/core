@@ -10,36 +10,36 @@ import core.android.com.corelib.mvp.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainActivityContract.MainActivityMvpView {
-
-    @Inject
-    lateinit var mPresenter: MainActivityContract.SplashMvpPresenter<MainActivityContract.MainActivityMvpView, MainActivityContract.MainActivityMvpInteractor>
-
-
-    @Inject
-    internal lateinit var employeeListAdapter: EmployeeListAdapter
-
-    override fun showList(list: List<EmployeeObject>) {
-        employeeListAdapter.addBlogsToList(list)
-    }
-
+class MainActivity : BaseActivity() {
+//
+//    @Inject
+//    lateinit var mPresenter: MainActivityContract.MainActivityMvpPresenter<MainActivityContract.MainActivityMvpView, MainActivityContract.MainActivityMvpInteractor>
+//
+//
+//    @Inject
+//    internal lateinit var employeeListAdapter: EmployeeListAdapter
+//
+//    override fun showList(list: List<EmployeeObject>) {
+//        employeeListAdapter.addBlogsToList(list)
+//    }
+//
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
-        rv_list.layoutManager = LinearLayoutManager(this)
-        rv_list.itemAnimator = DefaultItemAnimator()
-        rv_list.adapter = employeeListAdapter
-
-        mPresenter.onAttachView(this)
-
+//
+//        rv_list.layoutManager = LinearLayoutManager(this)
+//        rv_list.itemAnimator = DefaultItemAnimator()
+//        rv_list.adapter = employeeListAdapter
+//
+//        mPresenter.onAttachView(this)
+//
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter.onDetachView()
-    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        mPresenter.onDetachView()
+//    }
 
 
 }

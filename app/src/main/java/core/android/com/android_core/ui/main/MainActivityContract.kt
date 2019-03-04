@@ -20,7 +20,7 @@ object MainActivityContract {
 
     }
 
-    interface SplashMvpPresenter<V : MainActivityMvpView, I : MainActivityMvpInteractor> : BaseMvpPresenter<V, I> {
+    interface MainActivityMvpPresenter<V : MainActivityMvpView, I : MainActivityMvpInteractor> : BaseMvpPresenter<V, I> {
 
         fun getEmployeeList()
     }
