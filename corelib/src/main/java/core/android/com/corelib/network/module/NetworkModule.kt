@@ -4,13 +4,14 @@ import com.squareup.moshi.Moshi
 import core.android.com.corelib.network.adapter.ApplicationJsonAdapterFactory
 import core.android.com.corelib.inject.scopes.PerApplication
 import dagger.Module
-import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import dagger.Provides
+import okhttp3.Authenticator
 
 
 @Module

@@ -16,8 +16,6 @@ import core.android.com.corelib.camera.CameraUtils
 import core.android.com.corelib.camera.CameraView
 import core.android.com.corelib.camera.IMAGE_URI
 import core.android.com.corelib.camera.REQUEST_CAMERA_PERMISSION
-import core.android.com.corelib.permission.Permission
-import core.android.com.corelib.permission.PermissionCallback
 import kotlinx.android.synthetic.main.camera_sample.*
 
 class CameraSample : AppCompatActivity() {
@@ -74,11 +72,11 @@ class CameraSample : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (Permission.shouldAskPermission(this, Manifest.permission.CAMERA)) {
+      /*  if (Permission.shouldAskPermission(this, Manifest.permission.CAMERA)) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),
                     REQUEST_CAMERA_PERMISSION)
         } else
-            camera.start()
+            camera.start()*/
     }
 
 

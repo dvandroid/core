@@ -13,7 +13,7 @@ import core.android.com.corelib.R
 import kotlinx.android.synthetic.main.custom_dialog.*
 import javax.inject.Inject
 
-class CustomDialog @Inject constructor(context: Context) {
+open class CustomDialog @Inject constructor(context: Context) {
 
     var context : Context? = null
     var dialog : Dialog? = null
@@ -111,8 +111,8 @@ class CustomDialog @Inject constructor(context: Context) {
 fun CustomDialog.setColor(view : View, color : Int){
     if(view is TextView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            view?.setTextColor(context!!.getColor(color))
+            view.setTextColor(context!!.getColor(color))
          else
-            view?.setTextColor(ContextCompat.getColor(context!!, color))
+            view.setTextColor(ContextCompat.getColor(context!!, color))
     }
 }
