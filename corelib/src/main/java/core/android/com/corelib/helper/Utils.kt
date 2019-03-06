@@ -39,7 +39,9 @@ class Utils @Inject constructor() {
     }
 
     /**
-     *
+     * Function for getting current
+     * @param  currency type
+     * @return display string
      */
     fun getCurrent(currency: Currency): String{
         return when(currency){

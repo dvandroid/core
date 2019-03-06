@@ -25,7 +25,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/main_navigation" />
 
-
 </FrameLayout>
 
 

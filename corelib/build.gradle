@@ -3,11 +3,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
-/*apply(plugin = "com.android.library")
-apply(plugin = "kotlin-android-extensions")
-apply(plugin = "kotlin-android")
-apply(plugin = "kotlin-kapt")*/
-
 android {
     compileSdkVersion Versions.targetSdk
 
@@ -39,6 +34,7 @@ dependencies {
 
     implementation AppDeps.kotlin
     implementation SupportDeps.compat
+    implementation SupportDeps.compatv13
     implementation SupportDeps.constraintLayout
 
     implementation DaggerDeps.dagger
@@ -66,6 +62,14 @@ dependencies {
     testImplementation TestingDeps.jUnit
     androidTestImplementation TestingDeps.testRunner
     androidTestImplementation TestingDeps.testEspresso
+
+    implementation OtherDeps.sdp
+
+    implementation OtherDeps.zxing
+    implementation OtherDeps.timber
+    implementation OtherDeps.jvm
+
+    kapt OtherDeps.kjvm
 }
 
 

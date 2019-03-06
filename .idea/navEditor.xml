@@ -29,6 +29,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_dashboardFragment_to_settingsFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>

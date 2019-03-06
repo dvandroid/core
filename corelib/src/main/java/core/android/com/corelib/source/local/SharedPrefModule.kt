@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import javax.inject.Inject
 
 
-class SharedPrefModule constructor(context: Context, val gson : Gson){
+class SharedPrefModule  constructor(context: Context, val gson : Gson){
 
     private val sharedPreferences: SharedPreferences
 

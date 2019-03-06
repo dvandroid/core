@@ -24,17 +24,16 @@ class ApiModule {
     fun provideFirstTestApi(builder: Retrofit.Builder,
                             okHttpClientBuilder: OkHttpClient.Builder,
                             httpLoggingInterceptor: HttpLoggingInterceptor,
-                            converterFactory: Converter.Factory,
-                            authenticator: Authenticator,
-                            apiKeyInterceptor: Interceptor): FirstTestApi {
+                            converterFactory: Converter.Factory
+                            /*  authenticator: Authenticator,*/
+            /* apiKeyInterceptor: Interceptor*/): FirstTestApi {
 
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor)
         }
 
-        okHttpClientBuilder.addNetworkInterceptor(apiKeyInterceptor)
-                .authenticator(authenticator)
+        okHttpClientBuilder
                 .retryOnConnectionFailure(true)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -56,17 +55,16 @@ class ApiModule {
     fun provideSecondTestApi(builder: Retrofit.Builder,
                              okHttpClientBuilder: OkHttpClient.Builder,
                              httpLoggingInterceptor: HttpLoggingInterceptor,
-                             converterFactory: Converter.Factory,
-                             authenticator: Authenticator,
-                             apiKeyInterceptor: Interceptor): SecondTestApi {
+                             converterFactory: Converter.Factory
+                             /* authenticator: Authenticator,*/
+            /*  apiKeyInterceptor: Interceptor*/): SecondTestApi {
 
         if (BuildConfig.DEBUG) {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor)
         }
 
-        okHttpClientBuilder.addNetworkInterceptor(apiKeyInterceptor)
-                .authenticator(authenticator)
+        okHttpClientBuilder
                 .retryOnConnectionFailure(true)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
