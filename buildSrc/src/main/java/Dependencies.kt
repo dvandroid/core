@@ -24,7 +24,7 @@ object Versions {
     internal const val targetSdk = 28
 
     internal var gradle = "3.2.0"
-    internal var kotlin = "1.2.61"
+    internal var kotlin = "1.3.20"
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // MAIN                                                                                   //
@@ -32,13 +32,26 @@ object Versions {
 
     internal var support = "28.0.0"
     internal var constraintLayout = "1.1.0"
-    internal var dagger = "2.12"
+    internal var dagger = "2.13"
     internal var rxAndroid = "2.0.1"
     internal var rxJava = "2.1.7"
-    internal var retrofit = "2.3.0"
+    internal var retrofit = "2.4.0"
     internal var okHttp = "3.9.0"
     internal var moshi = "1.5.0"
     internal var kotshi = "1.0.5"
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // OTHERS                                                                                 //
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    internal var sdp = "1.0.5"
+    internal var jvm = "0.0.4"
+    internal var zxing = "1.9.8"
+    internal var timber = "4.7.1"
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // TESTING                                                                                //
@@ -67,11 +80,13 @@ object AppDeps {
 
 object SupportDeps {
     var compat = "com.android.support:appcompat-v7:${Versions.support}"
+    var compatv13 = "com.android.support:support-v13:${Versions.support}"
     var app = "com.android.support:support-compat:${Versions.support}"
     var cardView = "com.android.support:cardview-v7:${Versions.support}"
     var recyclerView = "com.android.support:recyclerview-v7:${Versions.support}"
     var design = "com.android.support:design:${Versions.support}"
     var constraintLayout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
+
 }
 
 object DaggerDeps {
@@ -86,6 +101,7 @@ object DaggerDeps {
 
 object RetrofitDeps {
     var retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    var gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     var moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     var rx = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
 }
@@ -108,7 +124,11 @@ object RxDeps {
 
 
 object OtherDeps {
-
+    var sdp = "com.intuit.sdp:sdp-android:${Versions.sdp}"
+    var jvm = "io.github.jffiorillo:jvmbuilder-annotations:${Versions.jvm}"
+    var kjvm = "io.github.jffiorillo:jvmbuilder:${Versions.jvm}"
+    var zxing = "me.dm7.barcodescanner:zbar:${Versions.zxing}"
+    var timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
 
 object TestingDeps {

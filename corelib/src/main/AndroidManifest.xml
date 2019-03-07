@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="core.android.com.corelib" />
+    package="core.android.com.corelib">
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+</manifest>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text">#757575</color>
+
+    <color name="core_btn_dark_text_color">#212121</color>
+    <color name="core_btn_stroke_color">#282828</color>
+
+    <!--Default background color for selected transparent buttons-->
+    <color name="core_btn_selected_color">#7e7e7e</color>
+
+    <color name="core_camera_finder__mask">#8c000000</color>
+
+</resources>
